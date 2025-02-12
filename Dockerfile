@@ -1,10 +1,10 @@
 FROM eclipse-temurin:21-jdk-jammy
 
 RUN apt-get update
-RUN apt-get  install -y python3-pip unzip
+RUN apt-get install -y python3-pip unzip
 
 # add requirements.txt, written this way to gracefully ignore a missing file
-COPY requirements.txt .
+COPY requirements.tx[t] .
 RUN ([ -f requirements.txt ] \
     && pip3 install --no-cache-dir -r requirements.txt) \
         || pip3 install --no-cache-dir jupyter jupyterlab
@@ -30,7 +30,7 @@ RUN adduser --disabled-password \
     --uid $NB_UID \
     $NB_USER
 
-COPY .idea $HOME
+COPY . $HOME
 RUN chown -R $NB_UID $HOME
 
 USER $NB_USER
